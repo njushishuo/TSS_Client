@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">TssClient</string>
+    <string name="tea_title_group">班级</string>
+    <string name="tea_title_assignment">任务</string>
+    <string name="tea_title_profile">我</string>
+
+
+    <string name="base_url">http://115.29.184.56:8090</string>
+
+    <string name="group_list_fragment">Group fragment</string>
+    <string name="assignment_list_fragment">Assignment fragment</string>
+    <string name="student_profile_fragment">Profile fragment</string>
+
+
+</resources>

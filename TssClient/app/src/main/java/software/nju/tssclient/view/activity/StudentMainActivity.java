@@ -22,7 +22,7 @@ public class StudentMainActivity extends AppCompatActivity {
     private User user;
 
 
-    @BindView(R.id.navigation)
+    @BindView(R.id.tea_navigation)
     BottomNavigationView navigation;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -60,6 +60,9 @@ public class StudentMainActivity extends AppCompatActivity {
         this.user = (User) intent.getExtras().get(LoginActivity.EXTRA_MESSAGE);
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.tea_fragment_container, new GroupListFragment());
+        transaction.commit();
 
     }
 

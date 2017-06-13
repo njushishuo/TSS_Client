@@ -58,8 +58,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         Intent intent = new Intent(this,StudentMainActivity.class);
         intent.putExtra(EXTRA_MESSAGE, user);
         startActivity(intent);
-
-
     }
 }
 

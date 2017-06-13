@@ -10,6 +10,10 @@
     <string name="group_list_fragment">Group fragment</string>
     <string name="assignment_list_fragment">Assignment fragment</string>
     <string name="student_profile_fragment">Profile fragment</string>
+    <string name="title_activity_test">testActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 
 
 </resources>

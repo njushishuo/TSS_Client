@@ -13,6 +13,7 @@ import software.nju.tssclient.model.entity.User;
 import software.nju.tssclient.presenter.contract.LoginContract;
 import software.nju.tssclient.presenter.impl.LoginPresenterImpl;
 import software.nju.tssclient.R;
+import software.nju.tssclient.view.activity.teacher.TeacherMainActivity;
 
 
 public class LoginActivity extends AppCompatActivity implements LoginContract.View {
@@ -55,7 +56,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
     @Override
     public void showUserInfo(User user) {
-        Intent intent = new Intent(this,StudentMainActivity.class);
+        Intent intent = new Intent(this,TeacherMainActivity.class);
         intent.putExtra(EXTRA_MESSAGE, user);
         startActivity(intent);
     }

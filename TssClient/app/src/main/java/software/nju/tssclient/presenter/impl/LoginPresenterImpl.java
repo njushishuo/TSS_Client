@@ -43,14 +43,14 @@ public class LoginPresenterImpl implements LoginContract.Presenter {
                     @Override
                     public void onError(Throwable e) {
 
-                        Log.e("logError", e.getMessage());
+                        String err = (e.getMessage()==null)?"login failed":e.getMessage();
+                        Log.e("error:",err);
 
                     }
 
                     @Override
                     public void onNext(User user) {
                         Log.d("user",user.getName());
-                        System.out.println(user.getName());
                         loginView.showUserInfo(user);
                     }
                 });

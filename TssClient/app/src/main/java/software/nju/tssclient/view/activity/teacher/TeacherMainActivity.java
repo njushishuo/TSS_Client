@@ -1,4 +1,4 @@
-package software.nju.tssclient.view.activity;
+package software.nju.tssclient.view.activity.teacher;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,11 +13,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import software.nju.tssclient.model.entity.User;
 import software.nju.tssclient.R;
+import software.nju.tssclient.view.activity.LoginActivity;
 import software.nju.tssclient.view.fragment.teacher.AssignmentListFragment;
 import software.nju.tssclient.view.fragment.teacher.GroupListFragment;
-import software.nju.tssclient.view.fragment.teacher.StudentProfileFragment;
+import software.nju.tssclient.view.fragment.teacher.TeacherProfileFragment;
 
-public class StudentMainActivity extends AppCompatActivity {
+public class TeacherMainActivity extends AppCompatActivity {
 
     private User user;
 
@@ -39,7 +40,7 @@ public class StudentMainActivity extends AppCompatActivity {
                     selectedFragment = new AssignmentListFragment();
                     break;
                 case R.id.tea_profile:
-                    selectedFragment = new StudentProfileFragment();
+                    selectedFragment = new TeacherProfileFragment();
                     break;
             }
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -53,7 +54,7 @@ public class StudentMainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_student);
+        setContentView(R.layout.activity_main_teacher);
         ButterKnife.bind(this);
 
         Intent intent = getIntent();

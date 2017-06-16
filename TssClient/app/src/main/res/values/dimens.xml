@@ -2,5 +2,11 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
     <dimen name="text_margin">16dp</dimen>
+    <dimen name="text_size_student_item">16sp</dimen>
+    <dimen name="text_size_group_item">20sp</dimen>
+    <dimen name="text_size_course_item">20sp</dimen>
+
+    <dimen name="divider_height">1px</dimen>
 </resources>

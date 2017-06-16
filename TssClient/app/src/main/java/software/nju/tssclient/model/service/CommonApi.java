@@ -2,10 +2,17 @@ package software.nju.tssclient.model.service;
 
 
 
+import java.util.List;
+
+import retrofit2.Response;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import rx.Observable;
-import software.nju.tssclient.model.dto.LoginUser;
+import software.nju.tssclient.model.entity.Course;
+import software.nju.tssclient.model.pojo.LoginUser;
 import software.nju.tssclient.model.entity.User;
 
 /**
@@ -15,6 +22,11 @@ import software.nju.tssclient.model.entity.User;
 public interface CommonApi {
 
     @POST("user/auth")
-    Observable<User> login (@Body LoginUser user);
+    Observable<Response<User>> login (@Body LoginUser user);
+
+
+    @GET("user/{username}/course")
+    Observable<List<Course>> getCoursesByUsername
+            (@Header("Authorization") String token, @Path("username") String username);
 
 }

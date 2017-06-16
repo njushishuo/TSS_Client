@@ -12,6 +12,8 @@ public interface LoginContract {
 
         void showUserInfo(User user);
 
+        void showError();
+
     }
 
     interface Presenter{

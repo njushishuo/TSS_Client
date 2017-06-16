@@ -1,5 +1,8 @@
-package software.nju.tssclient.view.fragment.teacher;
+package software.nju.tssclient.view.fragment;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,58 +16,59 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import software.nju.tssclient.R;
+import software.nju.tssclient.model.entity.Course;
 import software.nju.tssclient.model.entity.Group;
-import software.nju.tssclient.presenter.contract.GroupContract;
-import software.nju.tssclient.presenter.impl.GroupListPresenterImpl;
+import software.nju.tssclient.presenter.contract.CourseContract;
+import software.nju.tssclient.presenter.impl.CoursePresenterImpl;
 import software.nju.tssclient.util.TokenBuilder;
+import software.nju.tssclient.view.Adapter.CourseAdapter;
 import software.nju.tssclient.view.Adapter.GroupAdapter;
 import software.nju.tssclient.view.GridItemDividerDecoration;
 
 
-public class GroupListFragment extends Fragment  implements GroupContract.View {
+public class CourseListFragment extends Fragment implements CourseContract.View{
 
-
-    @BindView(R.id.group_recycler_view)
+    @BindView(R.id.course_recycler_view)
     RecyclerView recyclerView;
 
-    private GroupContract.Presenter presenter;
+    CourseContract.Presenter presenter;
 
-    public GroupListFragment(){
+    public CourseListFragment() {
 
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        presenter = new GroupListPresenterImpl(this);
+
+        presenter = new CoursePresenterImpl(this);
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view =inflater.inflate(R.layout.fragment_group, container, false);
+        View view =inflater.inflate(R.layout.fragment_course, container, false);
         ButterKnife.bind(this,view);
 
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+        String token = TokenBuilder.getToken(preferences);
+        String username = preferences.getString("username","liuqin");
 
-        String token = TokenBuilder.getToken(PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()));
-        presenter.getAllGroups(token);
-
-        return view;
+        presenter.getCoursesByUsername(token,username);
+        return  view;
     }
 
     @Override
-    public void showGroups(List<Group> groups) {
-
-        for(Group group : groups){
-            System.out.println(group.getName());
+    public void showCourses(List<Course> courses) {
+        for(Course course : courses){
+            System.out.println(course.getName());
         }
 
-        GroupAdapter adapter = new GroupAdapter(groups, getContext());
+        CourseAdapter adapter = new CourseAdapter(courses, getContext());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         recyclerView.addItemDecoration(new GridItemDividerDecoration
                 (getContext(), R.dimen.divider_height, R.color.divider));
-
     }
 }

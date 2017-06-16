@@ -1,4 +1,4 @@
-package software.nju.tssclient.model.dto;
+package software.nju.tssclient.model.pojo;
 
 import com.google.gson.annotations.SerializedName;
 

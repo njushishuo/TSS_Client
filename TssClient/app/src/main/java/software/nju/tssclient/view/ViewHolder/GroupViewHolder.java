@@ -23,6 +23,5 @@ public class GroupViewHolder extends RecyclerView.ViewHolder {
         idText = (TextView) itemView.findViewById(R.id.group_id_text);
         nameText = (TextView) itemView.findViewById(R.id.group_name_text);
         cardView = (CardView) itemView.findViewById(R.id.group_card_view);
-
     }
 }

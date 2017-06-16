@@ -1,6 +1,5 @@
 package software.nju.tssclient.view.activity.teacher;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -11,17 +10,12 @@ import android.view.MenuItem;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import software.nju.tssclient.model.entity.User;
 import software.nju.tssclient.R;
-import software.nju.tssclient.view.activity.LoginActivity;
-import software.nju.tssclient.view.fragment.teacher.AssignmentListFragment;
+import software.nju.tssclient.view.fragment.CourseListFragment;
 import software.nju.tssclient.view.fragment.teacher.GroupListFragment;
 import software.nju.tssclient.view.fragment.teacher.TeacherProfileFragment;
 
 public class TeacherMainActivity extends AppCompatActivity {
-
-    private User user;
-
 
     @BindView(R.id.tea_navigation)
     BottomNavigationView navigation;
@@ -36,8 +30,8 @@ public class TeacherMainActivity extends AppCompatActivity {
                 case R.id.tea_group:
                     selectedFragment = new GroupListFragment();
                     break;
-                case R.id.tea_assignment:
-                    selectedFragment = new AssignmentListFragment();
+                case R.id.tea_course:
+                    selectedFragment = new CourseListFragment();
                     break;
                 case R.id.tea_profile:
                     selectedFragment = new TeacherProfileFragment();
@@ -56,9 +50,6 @@ public class TeacherMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_teacher);
         ButterKnife.bind(this);
-
-        Intent intent = getIntent();
-        this.user = (User) intent.getExtras().get(LoginActivity.EXTRA_MESSAGE);
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

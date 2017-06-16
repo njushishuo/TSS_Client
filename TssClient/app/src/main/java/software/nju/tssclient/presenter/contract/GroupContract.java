@@ -20,7 +20,7 @@ public interface GroupContract {
 
     interface Presenter{
 
-        void getAllGroups(String username, String password);
+        void getAllGroups(String token);
 
     }
 

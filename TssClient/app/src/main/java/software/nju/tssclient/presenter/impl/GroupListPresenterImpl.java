@@ -7,9 +7,7 @@ import java.util.List;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
-import software.nju.tssclient.model.dto.LoginUser;
 import software.nju.tssclient.model.entity.Group;
-import software.nju.tssclient.model.entity.User;
 import software.nju.tssclient.model.service.ApiManager;
 import software.nju.tssclient.presenter.contract.GroupContract;
 import software.nju.tssclient.util.TokenBuilder;
@@ -18,12 +16,12 @@ import software.nju.tssclient.util.TokenBuilder;
  * Created by ss14 on 2017/6/13.
  */
 
-public class GroupPresenterImpl implements GroupContract.Presenter {
+public class GroupListPresenterImpl implements GroupContract.Presenter {
 
 
     private GroupContract.View view;
 
-    public GroupPresenterImpl(GroupContract.View view){
+    public GroupListPresenterImpl(GroupContract.View view){
 
         if(view==null){
             throw new IllegalArgumentException("groupview must not be null");
@@ -33,9 +31,9 @@ public class GroupPresenterImpl implements GroupContract.Presenter {
     }
 
     @Override
-    public void getAllGroups(String username, String password) {
+    public void getAllGroups(String token) {
 
-        ApiManager.getInstance().getTeacherApi().getAllGroups(TokenBuilder.getToke(username,password))
+        ApiManager.getInstance().getTeacherApi().getAllGroups(token)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<List<Group>>() {

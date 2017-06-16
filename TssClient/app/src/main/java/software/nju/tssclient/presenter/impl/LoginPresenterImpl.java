@@ -2,10 +2,15 @@ package software.nju.tssclient.presenter.impl;
 
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
+import retrofit2.Response;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
-import software.nju.tssclient.model.dto.LoginUser;
+import software.nju.tssclient.model.pojo.LoginUser;
 import software.nju.tssclient.model.entity.User;
 import software.nju.tssclient.model.service.ApiManager;
 import software.nju.tssclient.presenter.contract.LoginContract;
@@ -31,27 +36,35 @@ public class LoginPresenterImpl implements LoginContract.Presenter {
     @Override
     public void getUserInfo(final String username, String password) {
 
-        LoginUser user = new LoginUser(username,password);
+        final LoginUser user = new LoginUser(username,password);
         ApiManager.getInstance().getCommonApi().login(user)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<User>() {
+                .subscribe(new Subscriber<Response<User>>() {
                     @Override
                     public void onCompleted() {
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
 
-                        String err = (e.getMessage()==null)?"login failed":e.getMessage();
-                        Log.e("error:",err);
+                        Log.e("login error" , e.getMessage());
+                        loginView.showError();
 
                     }
 
                     @Override
-                    public void onNext(User user) {
-                        Log.d("user",user.getName());
-                        loginView.showUserInfo(user);
+                    public void onNext(Response<User> userResponse) {
+                        String jsonString = new Gson().toJson(userResponse);
+                        JsonObject temp = new JsonParser().parse(jsonString).getAsJsonObject();
+
+                        if(temp.has("body")){
+                            JsonObject body = temp.getAsJsonObject("body");
+                            if(body.has("id")){
+                                loginView.showUserInfo(userResponse.body());
+                            }
+                        }
                     }
                 });
 

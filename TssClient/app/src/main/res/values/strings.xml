@@ -1,19 +1,20 @@
 <resources>
     <string name="app_name">TssClient</string>
+
+
     <string name="tea_title_group">班级</string>
-    <string name="tea_title_assignment">任务</string>
+    <string name="tea_title_course">课程</string>
     <string name="tea_title_profile">我</string>
 
 
-    <string name="base_url">http://115.29.184.56:8090</string>
+    <string name="title_homework">作业</string>
+    <string name="title_exercise">练习</string>
+    <string name="title_exam">考试</string>
+    <string name="title_activity_assignment">!!!!!!!</string>
 
-    <string name="group_list_fragment">Group fragment</string>
-    <string name="assignment_list_fragment">Assignment fragment</string>
-    <string name="student_profile_fragment">Profile fragment</string>
-    <string name="title_activity_test">testActivity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="group_list_fragment">班级</string>
+    <string name="student_profile_fragment">个人信息</string>
+
 
 
 </resources>

@@ -2,12 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="software.nju.tssclient.view.fragment.teacher.AssignmentListFragment">
+    tools:context="software.nju.tssclient.view.fragment.CourseListFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/course_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/assignment_list_fragment" />
+        android:layout_height="match_parent" />
 
 </FrameLayout>

@@ -7,6 +7,7 @@
     <dimen name="text_size_student_item">16sp</dimen>
     <dimen name="text_size_group_item">20sp</dimen>
     <dimen name="text_size_course_item">20sp</dimen>
+    <dimen name="text_size_assign_item">16sp</dimen>
 
     <dimen name="divider_height">1px</dimen>
 </resources>

@@ -1,4 +1,4 @@
-package software.nju.tssclient.view.activity.teacher;
+package software.nju.tssclient.view.activity.common;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,13 +11,13 @@ import android.view.MenuItem;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import software.nju.tssclient.R;
-import software.nju.tssclient.view.fragment.common.CourseListFragment;
-import software.nju.tssclient.view.fragment.teacher.GroupListFragment;
-import software.nju.tssclient.view.fragment.teacher.TeacherProfileFragment;
+import software.nju.tssclient.view.fragment.common.ExamListFragment;
+import software.nju.tssclient.view.fragment.common.ExerciseListFragment;
+import software.nju.tssclient.view.fragment.common.HomeworkListFragment;
 
-public class TeacherMainActivity extends AppCompatActivity {
+public class AssignmentActivity extends AppCompatActivity {
 
-    @BindView(R.id.tea_navigation)
+    @BindView(R.id.assign_navigation)
     BottomNavigationView navigation;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -27,18 +27,18 @@ public class TeacherMainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Fragment selectedFragment = null;
             switch (item.getItemId()) {
-                case R.id.tea_group:
-                    selectedFragment = new GroupListFragment();
+                case R.id.navigation_assign_homework:
+                    selectedFragment = new HomeworkListFragment();
                     break;
-                case R.id.tea_course:
-                    selectedFragment = new CourseListFragment();
+                case R.id.navigation_assign_exercise:
+                    selectedFragment = new ExerciseListFragment();
                     break;
-                case R.id.tea_profile:
-                    selectedFragment = new TeacherProfileFragment();
+                case R.id.navigation_assign_exam:
+                    selectedFragment = new ExamListFragment();
                     break;
             }
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.tea_fragment_container, selectedFragment);
+            transaction.replace(R.id.assign_fragment_container, selectedFragment);
             transaction.commit();
             return true;
         }
@@ -48,14 +48,13 @@ public class TeacherMainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_teacher);
+        setContentView(R.layout.activity_assignment);
         ButterKnife.bind(this);
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.tea_fragment_container, new GroupListFragment());
+        transaction.replace(R.id.assign_fragment_container, new HomeworkListFragment());
         transaction.commit();
-
     }
 
 }

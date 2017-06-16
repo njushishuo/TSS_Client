@@ -13,7 +13,7 @@ import java.util.List;
 import software.nju.tssclient.R;
 import software.nju.tssclient.model.entity.Group;
 import software.nju.tssclient.view.ViewHolder.GroupViewHolder;
-import software.nju.tssclient.view.activity.teacher.GroupDetailActivity;
+import software.nju.tssclient.view.activity.teacher.StudentListActivity;
 
 /**
  * Created by ss14 on 2017/6/14.
@@ -51,7 +51,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupViewHolder> {
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startGroupDetailActivity(list.get(position).getId());
+                startStudentListActivity(list.get(position).getId());
             }
         });
     }
@@ -62,9 +62,9 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupViewHolder> {
     }
 
 
-    private void startGroupDetailActivity(int groupId){
+    private void startStudentListActivity(int groupId){
 
-        Intent intent = new Intent(context, GroupDetailActivity.class);
+        Intent intent = new Intent(context, StudentListActivity.class);
         intent.putExtra("id", groupId);
         context.startActivity(intent);
     }

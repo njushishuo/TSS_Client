@@ -13,7 +13,7 @@ import java.util.List;
 import software.nju.tssclient.R;
 import software.nju.tssclient.model.entity.Course;
 import software.nju.tssclient.view.ViewHolder.CourseViewHolder;
-import software.nju.tssclient.view.activity.AssignmentActivity;
+import software.nju.tssclient.view.activity.common.AssignmentActivity;
 
 /**
  * Created by ss14 on 2017/6/16.
@@ -48,7 +48,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseViewHolder> {
         holder.cardView.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            startGroupDetailActivity(list.get(position).getId());
+            startAssignmentActivity(list.get(position).getId());
             }
         });
     }
@@ -60,8 +60,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseViewHolder> {
         return list.size();
     }
 
-    private void startGroupDetailActivity(int courseId){
-
+    private void startAssignmentActivity(int courseId){
         Intent intent = new Intent(context, AssignmentActivity.class);
         intent.putExtra("courseId", courseId);
         context.startActivity(intent);

@@ -19,9 +19,7 @@ import software.nju.tssclient.util.TokenBuilder;
 import software.nju.tssclient.view.Adapter.StudentAdapter;
 import software.nju.tssclient.view.GridItemDividerDecoration;
 
-import static java.security.AccessController.getContext;
-
-public class GroupDetailActivity extends AppCompatActivity  implements  GroupDetailContract.View{
+public class StudentListActivity extends AppCompatActivity  implements  GroupDetailContract.View{
 
     @BindView(R.id.student_recycler_view)
     RecyclerView recyclerView;
@@ -34,7 +32,7 @@ public class GroupDetailActivity extends AppCompatActivity  implements  GroupDet
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_group_detail);
+        setContentView(R.layout.activity_student_list);
         ButterKnife.bind(this);
 
         this.presenter = new GroupDetailPresenterImpl(this);

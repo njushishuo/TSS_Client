@@ -1,4 +1,4 @@
-package software.nju.tssclient.view.activity;
+package software.nju.tssclient.view.activity.common;
 
 import android.content.Intent;
 import android.content.SharedPreferences;

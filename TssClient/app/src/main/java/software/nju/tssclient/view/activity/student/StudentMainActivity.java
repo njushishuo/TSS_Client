@@ -1,4 +1,4 @@
-package software.nju.tssclient.view.activity.teacher;
+package software.nju.tssclient.view.activity.student;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,9 +15,9 @@ import software.nju.tssclient.view.fragment.common.CourseListFragment;
 import software.nju.tssclient.view.fragment.teacher.GroupListFragment;
 import software.nju.tssclient.view.fragment.common.ProfileFragment;
 
-public class TeacherMainActivity extends AppCompatActivity {
+public class StudentMainActivity extends AppCompatActivity {
 
-    @BindView(R.id.tea_navigation)
+    @BindView(R.id.std_navigation)
     BottomNavigationView navigation;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -27,18 +27,15 @@ public class TeacherMainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Fragment selectedFragment = null;
             switch (item.getItemId()) {
-                case R.id.tea_group:
-                    selectedFragment = new GroupListFragment();
-                    break;
-                case R.id.tea_course:
+                case R.id.std_course:
                     selectedFragment = new CourseListFragment();
                     break;
-                case R.id.tea_profile:
+                case R.id.std_profile:
                     selectedFragment = new ProfileFragment();
                     break;
             }
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.tea_fragment_container, selectedFragment);
+            transaction.replace(R.id.std_fragment_container, selectedFragment);
             transaction.commit();
             return true;
         }
@@ -48,12 +45,12 @@ public class TeacherMainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_teacher);
+        setContentView(R.layout.activity_main_student);
         ButterKnife.bind(this);
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.tea_fragment_container, new GroupListFragment());
+        transaction.replace(R.id.std_fragment_container, new CourseListFragment());
         transaction.commit();
 
     }

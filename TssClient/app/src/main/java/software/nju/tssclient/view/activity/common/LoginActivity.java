@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ import software.nju.tssclient.model.entity.User;
 import software.nju.tssclient.presenter.contract.LoginContract;
 import software.nju.tssclient.presenter.impl.LoginPresenterImpl;
 import software.nju.tssclient.R;
+import software.nju.tssclient.view.activity.student.StudentMainActivity;
 import software.nju.tssclient.view.activity.teacher.TeacherMainActivity;
 
 
@@ -53,6 +55,10 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     public void login(){
         String username = usernameText.getText().toString();
         String password = passwordText.getText().toString();
+
+        Log.d("username",username);
+        Log.d("pw",password);
+
         loginPresenter.getUserInfo(username,password);
     }
 
@@ -63,7 +69,16 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         sharedPreferences.edit().putString("username",user.getUsername()).commit();
         sharedPreferences.edit().putString("password",user.getPassword()).commit();
 
-        Intent intent = new Intent(this,TeacherMainActivity.class);
+
+        Intent intent;
+        Bundle bundle = new Bundle(); bundle.putSerializable(EXTRA_MESSAGE,user);
+
+        if(user.getType().equals("student")){
+            intent = new Intent(this,StudentMainActivity.class);
+        }else{
+            intent = new Intent(this,TeacherMainActivity.class);
+        }
+        intent.putExtras(bundle);
         startActivity(intent);
     }
 

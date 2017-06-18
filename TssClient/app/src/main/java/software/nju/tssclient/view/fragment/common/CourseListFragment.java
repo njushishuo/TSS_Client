@@ -52,7 +52,7 @@ public class CourseListFragment extends Fragment implements CourseContract.View{
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
         String token = TokenBuilder.getToken(preferences);
         String username = preferences.getString("username","liuqin");
-        Log.d("token", token);
+        Log.d("get Username", username);
 
         presenter.getCoursesByUsername(token,username);
         return  view;

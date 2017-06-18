@@ -40,13 +40,19 @@ public class CoursePresenterImpl implements CourseContract.Presenter {
 
                     @Override
                     public void onError(Throwable e) {
-                        String err = (e.getMessage()==null)?"Get Groups failed":e.getMessage();
+                        String err = (e.getMessage()==null)?"Get Courses failed":e.getMessage();
                         Log.e("error:",err);
                     }
 
                     @Override
                     public void onNext(List<Course> courses) {
-                        Log.d("groupSize",courses.size()+"");
+                        Log.d("courseSize",courses.size()+"");
+                        if(courses.size()==0){
+                            Course course = new Course();
+                            course.setName("软件工程与计算1");
+                            course.setId(1);
+                            courses.add(course);
+                        }
                         view.showCourses(courses);
                     }
                 });

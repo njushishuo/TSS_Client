@@ -42,6 +42,7 @@ public class CoursePresenterImpl implements CourseContract.Presenter {
                     public void onError(Throwable e) {
                         String err = (e.getMessage()==null)?"Get Courses failed":e.getMessage();
                         Log.e("error:",err);
+                        e.printStackTrace();
                     }
 
                     @Override

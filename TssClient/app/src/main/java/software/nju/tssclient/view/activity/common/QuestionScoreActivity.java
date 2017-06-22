@@ -5,12 +5,20 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.animation.Animation;
 
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.formatter.IValueFormatter;
+import com.github.mikephil.charting.utils.ViewPortHandler;
 
 import java.util.ArrayList;
 
@@ -56,24 +64,66 @@ public class QuestionScoreActivity extends AppCompatActivity implements Question
 
     @Override
     public void showScoreGraph(QuestionScore questionScore) {
-        ArrayList<BarEntry> entryList = new ArrayList();
-        entryList.add(new BarEntry(25f,0));
-        entryList.add(new BarEntry(34f,1));
-        entryList.add(new BarEntry(55f,2));
-        entryList.add(new BarEntry(35f,3));
-        entryList.add(new BarEntry(21f,3));
-        BarDataSet dataSet = new BarDataSet(entryList,"人数");
+        final String[] quarters = new String[] { "<60", "60-70", "70-80", "80-90",">90" };
 
-//        ArrayList<BarEntry> stringList = new ArrayList();
-//        stringList.add("<60");
-//        stringList.add("60-70");
-//        stringList.add("71-80");
-//        stringList.add("81-90");
-//        stringList.add(">90");
+        IAxisValueFormatter xAxisformatter = new IAxisValueFormatter() {
+
+            @Override
+            public String getFormattedValue(float value, AxisBase axis) {
+                return quarters[(int) value];
+            }
+
+        };
+
+        IValueFormatter valueFormatter = new IValueFormatter() {
+            @Override
+            public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
+                return (int)value +"" ;
+            }
+        };
+
+
+
+
+        XAxis xAxis = barChart.getXAxis();
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setTextSize(14f);
+        //xAxis.setTextColor(Color.RED);
+        xAxis.setDrawAxisLine(true);
+        xAxis.setDrawGridLines(false);
+        xAxis.setAxisLineColor(R.color.colorAxis);
+        xAxis.setGranularity(1f); // minimum axis-step (interval) is 1
+        xAxis.setValueFormatter(xAxisformatter);
+
+        YAxis yAxisLeft = barChart.getAxisLeft();
+        yAxisLeft.setTextSize(14f);
+        yAxisLeft.setDrawAxisLine(true);
+        yAxisLeft.setDrawGridLines(false);
+        yAxisLeft.setAxisLineColor(R.color.colorAxis);
+
+        YAxis yAxisRight = barChart.getAxisRight();
+        yAxisRight.setEnabled(false);
+
+
+        ArrayList<BarEntry> entryList = new ArrayList();
+        entryList.add(new BarEntry(0,25f));
+        entryList.add(new BarEntry(1,34f));
+        entryList.add(new BarEntry(2,55f));
+        entryList.add(new BarEntry(3,35f));
+        entryList.add(new BarEntry(4,25f));
+        BarDataSet dataSet = new BarDataSet(entryList,"人数");
+        dataSet.setValueFormatter(valueFormatter);
+
 
         BarData data  = new BarData(dataSet);
+        data.setValueTextSize(14f);
 
+        data.setBarWidth(0.9f); // set custom bar width
         barChart.setData(data);
+        barChart.setFitBars(true); // make the x-axis fit exactly all bars
+        barChart.invalidate(); // refresh
+
+
 
 
     }

@@ -30,12 +30,28 @@
         <activity
             android:name=".view.activity.student.StudentMainActivity"
             android:label="@string/app_name" />
-
         <activity android:name=".view.activity.teacher.StudentListActivity" />
 
         <activity
             android:name=".view.activity.common.AssignmentActivity"
             android:label="@string/title_activity_assignment"></activity>
+
+        <activity
+            android:name=".view.activity.common.QuestionListActivity"
+            android:label="@string/title_activity_questionList"></activity>
+
+        <activity
+            android:name=".view.activity.common.QuestionScoreActivity"
+            android:label="@string/title_activity_questionList"></activity>
+
+        <activity
+            android:name=".view.activity.common.ReadMeActivity"
+            android:label="@string/title_activity_readme"></activity>
+
+        <activity
+            android:name=".view.activity.common.QuestionAnalysisActivity"
+            android:label="@string/title_activity_questionAnalysis"></activity>
+
     </application>
 
 </manifest>

@@ -13,10 +13,10 @@ public class User implements Serializable {
     private int id;
     @SerializedName("username")
     private String username;
-    @SerializedName("name")
-    private String name;
     @SerializedName("password")
     private String password;
+    @SerializedName("name")
+    private String name;
     @SerializedName("avatar")
     private String avatar;
     @SerializedName("gender")
@@ -45,20 +45,20 @@ public class User implements Serializable {
         this.username = username;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getAvatar() {

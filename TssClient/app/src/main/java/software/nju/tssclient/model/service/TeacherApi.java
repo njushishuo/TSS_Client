@@ -6,6 +6,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Path;
 import rx.Observable;
+import software.nju.tssclient.model.entity.AssignmentScore;
 import software.nju.tssclient.model.entity.Group;
 import software.nju.tssclient.model.entity.Student;
 
@@ -20,4 +21,8 @@ public interface TeacherApi {
 
     @GET("group/{groupId}/students")
     Observable<List<Student>> getStudentsByGroupId(@Header("Authorization") String token,@Path("groupId") int id);
+
+
+    @GET("assignment/{assignmentId}/score")
+    Observable<AssignmentScore> getScoreInfoByAssignmentId(@Header("Authorization") String token, @Path("assignmentId") int id);
 }

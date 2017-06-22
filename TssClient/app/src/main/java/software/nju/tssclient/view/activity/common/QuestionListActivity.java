@@ -1,8 +1,6 @@
 package software.nju.tssclient.view.activity.common;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,47 +10,34 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import software.nju.tssclient.R;
-import software.nju.tssclient.model.entity.Student;
-import software.nju.tssclient.presenter.contract.GroupDetailContract;
-import software.nju.tssclient.presenter.impl.GroupDetailPresenterImpl;
-import software.nju.tssclient.util.TokenBuilder;
-import software.nju.tssclient.view.Adapter.StudentAdapter;
+import software.nju.tssclient.model.entity.Question;
+import software.nju.tssclient.view.Adapter.QuestionAdapter;
 import software.nju.tssclient.view.GridItemDividerDecoration;
 
-public class QuestionListActivity extends AppCompatActivity  implements  GroupDetailContract.View{
+public class QuestionListActivity extends AppCompatActivity {
 
-    @BindView(R.id.student_recycler_view)
+    @BindView(R.id.question_recycler_view)
     RecyclerView recyclerView;
 
-    private GroupDetailContract.Presenter presenter;
-
-
+    private QuestionAdapter adapter;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_student_list);
+        setContentView(R.layout.activity_question_list);
         ButterKnife.bind(this);
 
-        this.presenter = new GroupDetailPresenterImpl(this);
+        List<Question> questions = (List<Question>) getIntent().getExtras().get("questionList");
+        int assignmentId = getIntent().getIntExtra("assignmentId",38);
+        initViews(assignmentId,questions);
 
-        Intent intent = getIntent();
-        int id = intent.getIntExtra("groupId",1);
-        String token = TokenBuilder.getToken
-                (PreferenceManager.getDefaultSharedPreferences(getApplicationContext()));
-        presenter.getStudentsByGroupId(token,id);
     }
 
 
+    public void initViews(int assignmentId, List<Question> questions) {
 
-    @Override
-    public void showStudents(List<Student> students) {
-        for(Student student : students){
-            System.out.println(student.getName());
-        }
-
-        StudentAdapter adapter = new StudentAdapter(students, getApplicationContext());
+        adapter = new QuestionAdapter(assignmentId,questions,getApplicationContext());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getApplicationContext()));
         recyclerView.addItemDecoration(new GridItemDividerDecoration

@@ -10,10 +10,12 @@
     <string name="title_exercise">练习</string>
     <string name="title_exam">考试</string>
     <string name="title_activity_assignment">任务</string>
+    <string name="title_activity_questionList">题目</string>
+    <string name="title_activity_questionScore">分数统计</string>
+    <string name="title_activity_questionAnalysis">得分统计</string>
+    <string name="title_activity_readme">Read Me</string>
 
     <string name="group_list_fragment">班级</string>
     <string name="student_profile_fragment">个人信息</string>
-
-
 
 </resources>

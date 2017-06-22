@@ -68,7 +68,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         sharedPreferences.edit().putString("username",user.getUsername()).commit();
         sharedPreferences.edit().putString("password",user.getPassword()).commit();
-
+        sharedPreferences.edit().putString("type",user.getType()).commit();
+        sharedPreferences.edit().putInt("userId",user.getId()).commit();
 
         Intent intent;
         Bundle bundle = new Bundle(); bundle.putSerializable(EXTRA_MESSAGE,user);

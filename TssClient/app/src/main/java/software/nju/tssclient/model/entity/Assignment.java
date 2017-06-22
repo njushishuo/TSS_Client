@@ -35,7 +35,6 @@ public class Assignment  implements Serializable{
     @SerializedName("currentTime")
     private String currentTime;
 
-
     public int getId() {
         return id;
     }
@@ -83,8 +82,6 @@ public class Assignment  implements Serializable{
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
     }
-
-
 
     public String getCurrentTime() {
         return currentTime;

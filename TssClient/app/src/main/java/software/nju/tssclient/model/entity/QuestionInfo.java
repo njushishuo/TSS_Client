@@ -5,23 +5,19 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 /**
- * Created by ss14 on 2017/6/16.
+ * Created by ss14 on 2017/6/22.
  */
 
-public class Question implements Serializable {
+public class QuestionInfo implements Serializable {
 
     @SerializedName("id")
-    private int id ;
+    private int id;
     @SerializedName("title")
     private String title;
     @SerializedName("description")
     private String description;
-    @SerializedName("difficulty")
-    private int difficulty;
-    @SerializedName("gitUrl")
-    private String gitUrl;
-    @SerializedName("creator")
-    private User creator;
+    @SerializedName("type")
+    private String type;
 
     public int getId() {
         return id;
@@ -47,27 +43,11 @@ public class Question implements Serializable {
         this.description = description;
     }
 
-    public int getDifficulty() {
-        return difficulty;
+    public String getType() {
+        return type;
     }
 
-    public void setDifficulty(int difficulty) {
-        this.difficulty = difficulty;
-    }
-
-    public String getGitUrl() {
-        return gitUrl;
-    }
-
-    public void setGitUrl(String gitUrl) {
-        this.gitUrl = gitUrl;
-    }
-
-    public User getCreator() {
-        return creator;
-    }
-
-    public void setCreator(User creator) {
-        this.creator = creator;
+    public void setType(String type) {
+        this.type = type;
     }
 }

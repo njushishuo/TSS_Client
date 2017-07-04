@@ -100,6 +100,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionViewHolder> {
         Intent intent = new Intent(context, QuestionScoreActivity.class);
         intent.putExtra("assignmentId",assignmentId);
         intent.putExtra("questionId",questionId);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }
 
@@ -107,6 +108,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionViewHolder> {
         Intent intent = new Intent(context, ReadMeActivity.class);
         intent.putExtra("assignmentId",assignmentId);
         intent.putExtra("questionId",questionId);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }
 
@@ -115,6 +117,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionViewHolder> {
         Intent intent = new Intent(context, QuestionAnalysisActivity.class);
         intent.putExtra("assignmentId",assignmentId);
         intent.putExtra("questionId",questionId);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }
 }

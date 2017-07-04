@@ -13,7 +13,6 @@ public interface ReadMeContract {
 
         void showReadMe(ReadMe readMe);
 
-
     }
 
     interface Presenter{
